@@ -13,7 +13,7 @@ REST API for EU Horizon project Easy Crowd Go.
 
 ## 1. Description
 
-The API is written to manage auto-registration, data logging and de-registration of IoT sensors for monitoring corwd movement using computer vision based sensors and WiFi Kismet Library based sensors. The snesor go through a self registration on power on by calling the registration endpoint and can then begin to log data into the database with an assigned internal ID. The API will be used to communicate between the frontend dashboard and the database. 
+The API is written to manage auto-registration, data logging and de-registration of IoT sensors for monitoring corwd movement using computer vision based sensors and WiFi Kismet Library based sensors. The sensor go through a self registration on power on by calling the registration endpoint and can then begin to log data into the database with an assigned internal ID. The API will be used to communicate between the frontend dashboard and the database. 
 
 
 ## 2. Function
