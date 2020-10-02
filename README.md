@@ -3,17 +3,16 @@ If you have any suggestions, feedback etc. Please see the [Contact](#11-get-in-t
 <br>
 <br>
 <br>
-
 <img src="https://www.flaticon.com/svg/static/icons/svg/47/47294.svg" width="75" height="75">
 
 [![version](https://img.shields.io/badge/v1.0.0-hawk-red?style=plastic)](https://semver.org)
 # Hawk - API 
-REST API for EU Horizon project Easy Crowd Go. 
+REST API for EU Horizon project Easy Crowd Go.
 
 
 ## 1. Description
 
-The API is written to manage auto-registration, data logging and de-registration of IoT sensors for monitoring corwd movement using computer vision based sensors and WiFi Kismet Library based sensors. The sensor go through a self registration on power on by calling the registration endpoint and can then begin to log data into the database with an assigned internal ID. The API will be used to communicate between the frontend dashboard and the database. 
+The API is written to manage auto-registration, data logging and de-registration of IoT sensors for monitoring crowd movement using computer vision-based sensors and WiFi Kismet Library based sensors. The sensor goes through a self-registration on power on by calling the registration endpoint and can then begin to log data into the database with an assigned internal ID. The API will be used to communicate between the frontend dashboard and the database. 
 
 
 ## 2. Function
@@ -32,7 +31,7 @@ The API offers the following functionalities for management and data logging fro
 
 ## 3. Architecture
 
-The API is segmented to keep a clean architecture (though a work in progress). The idea is to create clean separation between different functionalities and keep the "index.js" as clean and readable as possible. In this API, index.js is used to route to correct paths and send a response, while all the processing happens in the helper functions. 
+The API is segmented to keep a clean architecture (though a work in progress). The idea is to create a clear separation between different functionalities and keep the "index.js" as clean and readable as possible. In this API, index.js is used to route to correct paths and send a response, while all the processing happens in the helper functions. 
 
 
 - index.js  _// Main file used for routing._
@@ -40,7 +39,7 @@ The API is segmented to keep a clean architecture (though a work in progress). T
   - sensorSchema.js **--->** _Used to define mongoose schema for sensor registration._ 
   - logSchema.js **--->**   _Used to define logging schema for data logging._
   - apiSchema.js **--->**   _Used to define the api_key schema for storing the and checking the api_keys in the MongoDB_
-  - sensorRegistry.js **--->**   _Handles initial registration of the sensor and stores in the sensors collection._ 
+  - sensorRegistry.js **--->**   _Handles initial registration of the sensor and stores in the collection of the sensor._ 
   - logHandler.js **--->** _Handles data logging for all the sensors._
   - api_key.js **--->**  _Contains the API Validation function which returns a boolean._
   - requestHandler **--->**  _Handles all the Get request for getting sensor registration data, deleting sensors and getting all the data._
@@ -61,7 +60,7 @@ The API is segmented to keep a clean architecture (though a work in progress). T
   - **Failure** - On failure, <br> `Message: The API Key you provided could not be validated.`
  
  ## 5 Sensor Registration & Data Logging
- The sensor registration can done by making a **POST Request** with parameters and JSON body with the follwing schema.
+ The sensor registration can be done by making a **POST Request** with parameters and JSON body with the following schema.
  
  ### 5.1 API Enpoint
  `/hawk/api/v01/sensor`
@@ -88,7 +87,7 @@ The API is segmented to keep a clean architecture (though a work in progress). T
  
  ### 5.3.2 Sensor MongoDB Schema for registration.
  
- Please observe the following schema for JSON paylod while making the POST request. (Please see the sub-section [5.3.3 Method](#533-method) for example code)
+ Please observe the following schema for JSON payload while making the POST request. (Please see the sub-section [5.3.3 Method](#533-method) for example code)
  
  - **lat** - Latitude of the sensor from the GPS
  - **long** - Longitude of the sensor from the GPS
@@ -162,7 +161,7 @@ CountSensor validation failed: internalId: Path `internalId` is required.
 
 ### 5.4.2 Logging Data to MongoDB Collection
 
- Please observe the following schema for JSON paylod while making the POST request. (Please see the sub-section [5.4.3 Method](#543-method) for example code)
+ Please observe the following schema for JSON payload while making the POST request. (Please see the sub-section [5.4.3 Method](#543-method) for example code)
 
  - **internalId** - Internal assigned ID of the sensor. Unique value. - Required Value
  - **sensorType** - between WIFI and CV, used for advanced filtering. - REquired Value
@@ -179,7 +178,7 @@ const logSchema = new mongoose.Schema({
 });
 ```
 ### 5.4.3 Method
-After the sensor registration is done, a POST request with the parameter "log" set to "true" can be made to the API end point `/hawk/api/v01/sensor?api_key=YOUR_API_KEY&log=true` with the data as JSON payload. Please follow the log schema to avoid errors in logging. 
+After the sensor registration is done, a POST request with the parameter "log" set to "true" can be made to the API endpoint `/hawk/API/v01/sensor?api_key=YOUR_API_KEY&log=true` with the data as JSON payload. Please follow the log schema to avoid errors in logging. 
 
 :warning: **The sensor data must be packaged as an object.**
 
@@ -226,7 +225,7 @@ A list of all the registered sensors can be obtained from the API.
 
  ### 6.1.1 Parameters
 
-The APi endpoing takes two parameters in the query string, one of them is optional. 
+The API endpoint takes two parameters in the query string, one of them is optional. 
 
 - **type** - takes two option 
   - all -- Gets all the sensors registered in the Databse
@@ -242,7 +241,7 @@ The APi endpoing takes two parameters in the query string, one of them is option
   
  ### 6.2 Get all registered Sensors
   
-  To get a list of all the sensors registred in the database collection. Make a GET request to the following API endpoint with the params and your API Key. 
+  To get a list of all the sensors registered in the database collection. Make a GET request to the following API endpoint with the params and your API Key. 
   `Ex. /hawk/api/v01/sensor?api_key=YOUR_API_KEY&type=all`
   
   Example response:
@@ -268,18 +267,18 @@ The APi endpoing takes two parameters in the query string, one of them is option
   
 ### 6.3 Get all registered Sensors by type
 
-It is possible to get a list of all the sensors by their type, either WIFI or CV. To get sensor by types make a GET request to the API endpoint in section [6.1 API Endpoint](#61-api-endpoint-and-params)<br>
+It is possible to get a list of all the sensors by their type, either WIFI or CV. To get sensor by types make a GET request to the API endpoint in section [6.1 API Endpoint](#61-API-endpoint-and-params)<br>
 `Ex. /hawk/api/v01/sensor?api_key=YOUR_API_KEY&type=all&stype=WIFI`
 
 ### 6.4 Get one sensor by Internal ID
 
-To check if a particular sensor is registered or to check any other details with respect to the sensor, a GET request with the parameter **type** set to **one** and **internalId** set to the Internal ID of sensor can called. <br>
+To check if a particular sensor is registered or to check any other details with respect to the sensor, a GET request with the parameter **type** set to **one** and **internalId** set to the Internal ID of the sensor can be called. <br>
 `Ex. /hawk/api/v01/sesnor/?api_key=YOUR_API_KEY&type=one&internalId=CV001BER`
 
 
 ## 7. Get Data
 
-The data logged at the MongoDB can be queried by calling the API endpoint for Data. Data can retreievd for all the sensor, or for specific type or a specific sensor. 
+The data logged at the MongoDB can be queried by calling the API endpoint for Data. Data can be retrieved for all the sensor, or for a specific type or a specific sensor. 
 
 ### 7.1 API Endpoint and Params
 
@@ -290,7 +289,7 @@ The data logged at the MongoDB can be queried by calling the API endpoint for Da
 
  ### 7.1.1 Parameters
 
-The APi endpoing takes two parameters in the query string, one of them is optional. 
+The API endpoint takes two parameters in the query string, one of them is optional. 
 
 - **type** - takes two option 
   - all -- Gets all the data of registered sensors in the Database
@@ -305,7 +304,7 @@ The APi endpoing takes two parameters in the query string, one of them is option
 
  ### 7.2 Get all data
   
-  To get a list of all the sensors registred in the database collection. Make a GET request to the following API endpoint with the params and your API Key. 
+  To get a list of all the sensors registered in the database collection. Make a GET request to the following API endpoint with the params and your API Key. 
   `Ex. /hawk/api/v01/data?api_key=YOUR_API_KEY&type=all`
 
 Sample response
@@ -326,18 +325,18 @@ Sample response
 
 ### 7.3 Get all data by sensors type
 
-It is possible to get data by the sensor type, either WIFI or CV. It works on the same principle as GET sensor list.  To get data by sensor by types make a GET request to the API endpoint in section [7.1 API Endpoint and Params](#71-api-endpoint-and-params)<br>
+It is possible to get data by the sensor type, either WIFI or CV. It works on the same principle as GET sensor list.  To get data by the sensor by types make a GET request to the API endpoint in section [7.1 API Endpoint and Params](#71-api-endpoint-and-params)<br>
 `Ex. /hawk/api/v01/sensor?api_key=YOUR_API_KEY&type=all&stype=WIFI`
 
 ### 7.4 Get data of one sensor by Internal ID
 
-To get the data of one particular sensor from the database, a GET request with the parameter **type** set to **one** and **internalId** set to the Internal ID of sensor can called. <br>
+To get the data of one particular sensor from the database, a GET request with the parameter **type** set to **one** and **internalId** set to the Internal ID of the sensor can be called. <br>
 `Ex. /hawk/api/v01/data/?api_key=YOUR_API_KEY&type=one&internalId=CV001BER`
 
 ## 8. De-registration and Deletion
 
-For the sake of simplicity any sensor can be deleted by making a POST request to the API endpoint with the internalId of the sensor to be de-registered. 
-Every sensor should initial derigistration when the shut down sequence is intiated for the sensor. 
+For the sake of simplicity, any sensor can be deleted by making a POST request to the API endpoint with the internalId of the sensor to be de-registered. 
+Every sensor should initial deregistration when the shutdown sequence is initiated for the sensor. 
 
 ### 8.1 API Endpoint and Params
 
@@ -356,12 +355,12 @@ The API endpoint takes one query string parameter
 To delete a sensor make a DELETE request to the API endpoint with the sensor internal ID as the query string. <br>
 `Ex. /hawk/api/v01/delete/api_key=YOUR_API_KEY&internalId=CV001BER`
 
-:warning: In the future, the API endpoint for delteion will change. Scheduled for an update in the coming months. 
+:warning: In the future, the API endpoint for deletion will change. Scheduled for an update in the coming months. 
 
 ## 9. Current Status
 
 - The API has not been deployed yet. The next step is to deploy the API on the AWS EC2 or Heroku service.
-- Scheduling a testing with the hardware team 
+- Scheduling testing with the hardware team 
 
 ## 10. Future Updates
 
@@ -377,4 +376,5 @@ To delete a sensor make a DELETE request to the API endpoint with the sensor int
 ## 11. Get in touch
 
 If you want to know more about the project or want to enquire about anything else related to the project, please feel free to write me an email at sp@suryaveerpatnaik.com
+
 
