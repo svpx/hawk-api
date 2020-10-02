@@ -1,12 +1,14 @@
+:warning: This is just a public repo for sharing documentation. Original API is under development and is in a private repo. This is a work in progress. 
+If you have any suggestions, feedback etc. Please see the [Contact](#11-get-in-touch) section and feel free to write me an email. 
+<br>
+<br>
+<br>
+
 <img src="https://www.flaticon.com/svg/static/icons/svg/47/47294.svg" width="75" height="75">
 
 [![version](https://img.shields.io/badge/v1.0.0-hawk-red?style=plastic)](https://semver.org)
 # Hawk - API 
-REST API for EU Horizon project Easy Crowd Go. <br>
-<br>
-<br>
-:warning: This is just a public repo for sharing documentation. Original API is under development and is in a private repo. This is a work in progress. 
-If you have any suggestions, feedback etc. Please see the [Contact](#11-get-in-touch) section and feel free to write me an email. 
+REST API for EU Horizon project Easy Crowd Go. 
 
 
 ## 1. Description
