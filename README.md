@@ -5,7 +5,7 @@ If you have any suggestions, feedback etc. Please see the [Contact](#11-get-in-t
 <br>
 <img src="https://www.flaticon.com/svg/static/icons/svg/47/47294.svg" width="75" height="75">
 
-[![version](https://img.shields.io/badge/v1.0.0-hawk-red?style=plastic)](https://semver.org)
+[![version](https://img.shields.io/badge/hawk-v1.0.0-yellowgreen)](https://semver.org)
 # Hawk - API 
 REST API for EU Horizon project Easy Crowd Go.
 
