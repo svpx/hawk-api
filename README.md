@@ -68,10 +68,10 @@ The API is segmented to keep a clean architecture (though a work in progress). T
  ### 5.2 Parameters
  The post request takes two parameters,
  - **reg** - invoke the parameter to call registration function and register a sensor. <br>
- `/hawk/api/v01/sensor?api_key="YOUR_API_KEY"&type=reg`
+ `/hawk/api/v01/sensor?api_key="YOUR_API_KEY"&reg=true`
  
  - **log** - invoke the parameter to start logging data from the sensors. Check the Log Data section below for the Data Schema. <br>
- `/hawk/api/v01/sensor?api_key="YOUR_API_KEY"&type=log`
+ `/hawk/api/v01/sensor?api_key="YOUR_API_KEY"&log=true`
  
  
 ### 5.3 Registering a sensor
